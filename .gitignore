@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+dataset/*.zip
+data/*.lock
+data/*.tmp*
+data/~$*
+*.log
+.tmp/

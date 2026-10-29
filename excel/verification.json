@@ -1,0 +1,96 @@
+﻿{
+    "checked_at_utc":  "2026-10-29T10:38:39.6069787Z",
+    "engine":  "Microsoft Excel Desktop COM",
+    "query_count":  13,
+    "tables":  {
+                   "tblDimDate":  823,
+                   "tblModelChecks":  8,
+                   "tblDimHotel":  2,
+                   "tblMonthlySummary":  79,
+                   "tblForecast":  54,
+                   "tblDimRoom":  18,
+                   "tblFactBookings":  119391,
+                   "tblDimCustomerType":  4,
+                   "tblForecastMetrics":  2,
+                   "tblStatistics":  3,
+                   "tblDataQuality":  495,
+                   "tblDimCountry":  178
+               },
+    "statistics":  [
+                       {
+                           "data_source":  "original",
+                           "hotel":  "Resort Hotel",
+                           "total_bookings":  40060,
+                           "completed_stays":  28938,
+                           "canceled_bookings":  11122,
+                           "cancellation_rate":  0.27763354967548676,
+                           "average_adr_per_booking":  94.95545919768405,
+                           "median_adr_per_booking":  75,
+                           "stdev_adr_per_booking":  61.441098828951908,
+                           "adr_valid_count":  40059,
+                           "total_nights_all":  173001,
+                           "estimated_lodging_revenue":  11601914.029999977,
+                           "first_arrival":  42186,
+                           "last_arrival":  42978
+                       },
+                       {
+                           "data_source":  "original",
+                           "hotel":  "City Hotel",
+                           "total_bookings":  79330,
+                           "completed_stays":  46228,
+                           "canceled_bookings":  33102,
+                           "cancellation_rate":  0.41726963317786464,
+                           "average_adr_per_booking":  105.3044653977023,
+                           "median_adr_per_booking":  99.9,
+                           "stdev_adr_per_booking":  43.602953837094717,
+                           "adr_valid_count":  79330,
+                           "total_nights_all":  236256,
+                           "estimated_lodging_revenue":  14394410.179999879,
+                           "first_arrival":  42186,
+                           "last_arrival":  42978
+                       },
+                       {
+                           "data_source":  "web",
+                           "hotel":  "City Hotel",
+                           "total_bookings":  1,
+                           "completed_stays":  1,
+                           "canceled_bookings":  0,
+                           "cancellation_rate":  0,
+                           "average_adr_per_booking":  120.5,
+                           "median_adr_per_booking":  120.5,
+                           "stdev_adr_per_booking":  null,
+                           "adr_valid_count":  1,
+                           "total_nights_all":  1,
+                           "estimated_lodging_revenue":  120.5,
+                           "first_arrival":  42993,
+                           "last_arrival":  42993
+                       }
+                   ],
+    "forecast_metrics":  [
+                             {
+                                 "hotel":  "City Hotel",
+                                 "mae":  183.23722943722956,
+                                 "mape":  0.0804852906195271,
+                                 "holdout_months":  3,
+                                 "mape_zero_actual_excluded":  0,
+                                 "train_months":  21
+                             },
+                             {
+                                 "hotel":  "Resort Hotel",
+                                 "mae":  97.65656565656559,
+                                 "mape":  0.091123103063531372,
+                                 "holdout_months":  3,
+                                 "mape_zero_actual_excluded":  0,
+                                 "train_months":  21
+                             }
+                         ],
+    "goal_seek":  {
+                      "nights":  1000.0000000000001,
+                      "rounded_revenue":  100000,
+                      "rounded_nights":  1000,
+                      "revenue":  100000.00000000001,
+                      "price":  100,
+                      "target":  100000,
+                      "status":  "สำเร็จ (Excel Goal Seek)"
+                  }
+}

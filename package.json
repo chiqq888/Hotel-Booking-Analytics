@@ -1,0 +1,45 @@
+{
+  "name": "hotel-booking-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ระบบวิเคราะห์การจองโรงแรมด้วย Excel, Tableau และเว็บ",
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "tsx watch server/server.ts",
+    "dev:client": "vite --config vite.config.ts",
+    "import:data": "tsx scripts/import-data.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.server.json",
+    "build": "npm run typecheck && vite build --config vite.config.ts && tsc -p tsconfig.server.json",
+    "start": "node dist/server/server.js",
+    "test": "tsx --test server/tests/*.test.ts",
+    "excel:setup": "powershell -NoProfile -ExecutionPolicy Bypass -File excel/setup-excel.ps1",
+    "excel:refresh": "powershell -NoProfile -ExecutionPolicy Bypass -File excel/refresh-excel.ps1"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "csv-parse": "^6.1.0",
+    "dotenv": "^17.2.3",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "unzipper": "^0.12.3"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.3",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/supertest": "^6.0.3",
+    "@types/unzipper": "^0.10.11",
+    "@vitejs/plugin-react": "^5.1.0",
+    "concurrently": "^9.2.1",
+    "supertest": "^7.1.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  },
+  "engines": { "node": ">=22.12.0" }
+}

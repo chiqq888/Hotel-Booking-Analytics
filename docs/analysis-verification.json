@@ -1,0 +1,18 @@
+{
+  "originalMetricsMatchCsv": true,
+  "nativeForecastMatchesIndependentOls": true,
+  "goalSeekVerified": true,
+  "modelChecks": {
+    "duplicate_booking_id": 0.0,
+    "missing_booking_id": 0.0,
+    "hotel_fk": 0.0,
+    "room_fk": 0.0,
+    "country_fk": 0.0,
+    "customer_type_fk": 0.0,
+    "date_fk_nonnull": 0.0,
+    "invalid_arrival_date": 0.0
+  },
+  "queryCount": 13,
+  "factRows": 119391,
+  "note": "Read-only checks of saved Excel output and native CSV exports; no workbook changes."
+}

@@ -1,0 +1,27 @@
+{
+  "checkedAtUtc": "2026-10-29T10:21:29.921Z",
+  "base": "http://127.0.0.1:3001",
+  "health": {
+    "status": "ok",
+    "storage": "Excel",
+    "tableauRefresh": "manual"
+  },
+  "originalSummary": {
+    "totalBookings": 119390,
+    "completedStays": 75166,
+    "canceledBookings": 44224,
+    "cancellationRate": 0.37041628277075134,
+    "averageAdr": 101.83202790876646,
+    "estimatedLodgingRevenue": 25996324.210000515,
+    "totalNights": 409257,
+    "dateFrom": "2015-07-01",
+    "dateTo": "2017-08-31",
+    "dataSource": "original"
+  },
+  "originalMetricsMatchIndependentCsvAudit": true,
+  "webTotal": 1,
+  "webIds": [
+    "WEB-9b49c62c-cd57-4336-8a0f-9294398b7e6b"
+  ],
+  "note": "Read from running API after root restarted the Backend process. No records written by this script."
+}

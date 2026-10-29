@@ -1,0 +1,99 @@
+{
+  "method": "Independent Python OLS; compare to native Excel FORECAST.LINEAR results. Actual counts from unchanged CSV audit.",
+  "eligibleMonths": "2015-08..2017-07",
+  "holdoutMonths": "2017-05..2017-07",
+  "results": [
+    {
+      "hotel": "City Hotel",
+      "train_months": 21,
+      "holdout": [
+        {
+          "month": "2017-05",
+          "actual": 2339,
+          "predicted": 2037.5047619047618,
+          "error": 301.49523809523816,
+          "absolute_error": 301.49523809523816,
+          "ape": 0.1288992039740223
+        },
+        {
+          "month": "2017-06",
+          "actual": 2163,
+          "predicted": 2062.429437229437,
+          "error": 100.5705627705629,
+          "absolute_error": 100.5705627705629,
+          "ape": 0.046495868132484006
+        },
+        {
+          "month": "2017-07",
+          "actual": 2235,
+          "predicted": 2087.3541125541124,
+          "error": 147.64588744588764,
+          "absolute_error": 147.64588744588764,
+          "ape": 0.066060799752075
+        }
+      ],
+      "mae": 183.23722943722956,
+      "mape": 0.0804852906195271,
+      "future": [
+        {
+          "month": "2017-09",
+          "predicted": 2226.06
+        },
+        {
+          "month": "2017-10",
+          "predicted": 2255.87
+        },
+        {
+          "month": "2017-11",
+          "predicted": 2285.68
+        }
+      ]
+    },
+    {
+      "hotel": "Resort Hotel",
+      "train_months": 21,
+      "holdout": [
+        {
+          "month": "2017-05",
+          "actual": 1212,
+          "predicted": 1197.547619047619,
+          "error": 14.452380952380963,
+          "absolute_error": 14.452380952380963,
+          "ape": 0.011924406726386933
+        },
+        {
+          "month": "2017-06",
+          "actual": 1045,
+          "predicted": 1205.0216450216449,
+          "error": -160.02164502164487,
+          "absolute_error": 160.02164502164487,
+          "ape": 0.15313076078626303
+        },
+        {
+          "month": "2017-07",
+          "actual": 1094,
+          "predicted": 1212.495670995671,
+          "error": -118.49567099567093,
+          "absolute_error": 118.49567099567093,
+          "ape": 0.10831414167794418
+        }
+      ],
+      "mae": 97.65656565656559,
+      "mape": 0.09112310306353139,
+      "future": [
+        {
+          "month": "2017-09",
+          "predicted": 1182.3314492753625
+        },
+        {
+          "month": "2017-10",
+          "predicted": 1187.2788405797103
+        },
+        {
+          "month": "2017-11",
+          "predicted": 1192.226231884058
+        }
+      ]
+    }
+  ]
+}

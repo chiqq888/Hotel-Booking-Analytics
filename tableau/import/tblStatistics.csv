@@ -1,0 +1,4 @@
+﻿"data_source","hotel","total_bookings","completed_stays","canceled_bookings","cancellation_rate","average_adr_per_booking","median_adr_per_booking","stdev_adr_per_booking","adr_valid_count","total_nights_all","estimated_lodging_revenue","first_arrival","last_arrival"
+"original","Resort Hotel","40060","28938","11122","0.277633549675487","94.955459197684","75","61.4410988289519","40059","173001","11601914.03","42186","42978"
+"original","City Hotel","79330","46228","33102","0.417269633177865","105.304465397702","99.9","43.6029538370947","79330","236256","14394410.1799999","42186","42978"
+"web","City Hotel","1","1","0","0","120.5","120.5",,"1","1","120.5","42993","42993"

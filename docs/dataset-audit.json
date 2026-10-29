@@ -1,0 +1,333 @@
+{
+  "source": "https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand",
+  "downloadEndpoint": "https://www.kaggle.com/api/v1/datasets/download/jessemostipak/hotel-booking-demand",
+  "sha256": "7c2ae42a7353905ea136e5c2287f17c92c5435826598bfbb8491c6f0c7b1fc06",
+  "bytes": 16855599,
+  "rows": 119390,
+  "columns": [
+    "hotel",
+    "is_canceled",
+    "lead_time",
+    "arrival_date_year",
+    "arrival_date_month",
+    "arrival_date_week_number",
+    "arrival_date_day_of_month",
+    "stays_in_weekend_nights",
+    "stays_in_week_nights",
+    "adults",
+    "children",
+    "babies",
+    "meal",
+    "country",
+    "market_segment",
+    "distribution_channel",
+    "is_repeated_guest",
+    "previous_cancellations",
+    "previous_bookings_not_canceled",
+    "reserved_room_type",
+    "assigned_room_type",
+    "booking_changes",
+    "deposit_type",
+    "agent",
+    "company",
+    "days_in_waiting_list",
+    "customer_type",
+    "adr",
+    "required_car_parking_spaces",
+    "total_of_special_requests",
+    "reservation_status",
+    "reservation_status_date"
+  ],
+  "dateFrom": "2015-07-01",
+  "dateTo": "2017-08-31",
+  "hotels": {
+    "Resort Hotel": 40060,
+    "City Hotel": 79330
+  },
+  "statuses": {
+    "Check-Out": 75166,
+    "Canceled": 43017,
+    "No-Show": 1207
+  },
+  "noShowCanceledValues": {
+    "1": 1207
+  },
+  "totalBookings": 119390,
+  "completedStays": 75166,
+  "canceledBookings": 44224,
+  "cancellationRate": 0.37041628277075134,
+  "averageAdrNonnegativePerBooking": 101.83202790876882,
+  "estimatedLodgingRevenue": 25996324.21,
+  "missing": {
+    "children": 4,
+    "country": 488,
+    "agent": 16340,
+    "company": 112593
+  },
+  "negativeAdr": 1,
+  "zeroAdr": 1959,
+  "maxAdr": 5400.0,
+  "monthlyCompletedStays": [
+    {
+      "hotel": "City Hotel",
+      "month": "2015-07",
+      "completed_stays": 459
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2015-08",
+      "completed_stays": 1248
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2015-09",
+      "completed_stays": 1986
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2015-10",
+      "completed_stays": 2065
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2015-11",
+      "completed_stays": 934
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2015-12",
+      "completed_stays": 986
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-01",
+      "completed_stays": 926
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-02",
+      "completed_stays": 1441
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-03",
+      "completed_stays": 1938
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-04",
+      "completed_stays": 2022
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-05",
+      "completed_stays": 2240
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-06",
+      "completed_stays": 2203
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-07",
+      "completed_stays": 2088
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-08",
+      "completed_stays": 2131
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-09",
+      "completed_stays": 2304
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-10",
+      "completed_stays": 2272
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-11",
+      "completed_stays": 1762
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2016-12",
+      "completed_stays": 1406
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-01",
+      "completed_stays": 1328
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-02",
+      "completed_stays": 1623
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-03",
+      "completed_stays": 2134
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-04",
+      "completed_stays": 1993
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-05",
+      "completed_stays": 2339
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-06",
+      "completed_stays": 2163
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-07",
+      "completed_stays": 2235
+    },
+    {
+      "hotel": "City Hotel",
+      "month": "2017-08",
+      "completed_stays": 2002
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2015-07",
+      "completed_stays": 1058
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2015-08",
+      "completed_stays": 1043
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2015-09",
+      "completed_stays": 1034
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2015-10",
+      "completed_stays": 1160
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2015-11",
+      "completed_stays": 920
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2015-12",
+      "completed_stays": 961
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-01",
+      "completed_stays": 765
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-02",
+      "completed_stays": 1113
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-03",
+      "completed_stays": 1409
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-04",
+      "completed_stays": 1345
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-05",
+      "completed_stays": 1323
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-06",
+      "completed_stays": 993
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-07",
+      "completed_stays": 985
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-08",
+      "completed_stays": 1107
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-09",
+      "completed_stays": 1068
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-10",
+      "completed_stays": 1417
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-11",
+      "completed_stays": 1056
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2016-12",
+      "completed_stays": 1056
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-01",
+      "completed_stays": 1103
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-02",
+      "completed_stays": 1195
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-03",
+      "completed_stays": 1164
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-04",
+      "completed_stays": 1205
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-05",
+      "completed_stays": 1212
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-06",
+      "completed_stays": 1045
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-07",
+      "completed_stays": 1094
+    },
+    {
+      "hotel": "Resort Hotel",
+      "month": "2017-08",
+      "completed_stays": 1107
+    }
+  ],
+  "boundaryMonthPolicy": "Exclude first and last arrival month conservatively; a min/max record date does not prove full coverage. See Config in analysis.xlsx."
+}
