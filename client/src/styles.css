@@ -10,3 +10,5 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 /* Keep off-screen accessibility labels inside the horizontally scrolling table. */
 .table-scroll{position:relative}
+
+.tableau-pages{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}

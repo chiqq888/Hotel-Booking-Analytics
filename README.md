@@ -49,6 +49,13 @@ Backend เขียนเฉพาะ `data/raw_data.xlsx` มี Excel Table �
 
 ค่าเริ่มต้น URL ว่าง หน้า Dashboard จะระบุว่ายังไม่เชื่อมต่อและไม่มีกราฟ Tableau จำลอง การโหลดหน้าเว็บใหม่อ่านฉบับที่ Publish แล้วเท่านั้น
 
+หน้าแดชบอร์ดมีปุ่มสลับ 2 หน้า ตั้งลิงก์หน้าแรกใน `VITE_TABLEAU_VIZ_URL` และหน้าที่สองใน `VITE_TABLEAU_VIZ_URL_2` ของ `.env` แต่ละลิงก์ใช้ Dashboard หรือ Story ที่เผยแพร่แล้วได้ หากยังไม่มีลิงก์หน้าที่สองให้เว้นว่าง หน้าแรกยังใช้งานได้ตามเดิม หลังแก้ค่าต้อง restart Vite หรือ build ใหม่
+
+```dotenv
+VITE_TABLEAU_VIZ_URL=https://public.tableau.com/views/ชื่อWorkbook/หน้าแรก
+VITE_TABLEAU_VIZ_URL_2=https://public.tableau.com/views/ชื่อWorkbook/หน้าที่สอง
+```
+
 เมื่อเพิ่มรายการเว็บ ใช้ลำดับ **บันทึกบนเว็บ → refresh Excel → Refresh Extract ใน Tableau → Publish ทับเดิม → โหลด Dashboard ใหม่** Tableau Public ไม่อ่านไฟล์ Excel ในเครื่องแบบ real-time เลือกตัวกรองรวม `web` เมื่อต้องการเห็นรายการสาธิต ส่วนรายงานวิชาการใช้ `original`
 
 ## Build และทดสอบ
