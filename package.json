@@ -5,6 +5,7 @@
   "type": "module",
   "description": "ระบบวิเคราะห์การจองโรงแรมด้วย Excel, Tableau และเว็บ",
   "scripts": {
+    "ready": "node scripts/start.mjs",
     "dev": "concurrently -k -n api,web \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "tsx watch server/server.ts",
     "dev:client": "vite --config vite.config.ts",
