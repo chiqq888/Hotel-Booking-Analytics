@@ -20,8 +20,6 @@
   },
   "originalMetricsMatchIndependentCsvAudit": true,
   "webTotal": 1,
-  "webIds": [
-    "WEB-9b49c62c-cd57-4336-8a0f-9294398b7e6b"
-  ],
+  "webIds": ["WEB-9b49c62c-cd57-4336-8a0f-9294398b7e6b"],
   "note": "Read from running API after root restarted the Backend process. No records written by this script."
 }

@@ -18,13 +18,13 @@
 2. ลาก `tblFactBookings` ลง logical canvas เป็น fact หลัก ตรวจจำนวนแถวและชนิดวันที่/ตัวเลข/Boolean
 3. เพิ่ม logical relationships แบบ many-to-one ตามตารางนี้ ห้าม physical join MonthlySummary หรือ Forecast ลง fact เพราะจะทำ metric คูณซ้ำ
 
-| Fact field | Dimension table | Dimension PK | ความหมาย |
-|---|---|---|---|
-| hotel_key | tblDimHotel | hotel_key | ประเภทโรงแรมที่ปกปิดชื่อจริง |
-| room_key | tblDimRoom | room_key | hotel + `\|` + reserved_room_type |
-| country_key | tblDimCountry | country_key | country code/`__MISSING__` |
-| customer_type_key | tblDimCustomerType | customer_type_key | กลุ่มการจอง/`__MISSING__` |
-| arrival_date | tblDimDate | date_key | วันที่เข้าพักตามกำหนด |
+| Fact field        | Dimension table    | Dimension PK      | ความหมาย                          |
+| ----------------- | ------------------ | ----------------- | --------------------------------- |
+| hotel_key         | tblDimHotel        | hotel_key         | ประเภทโรงแรมที่ปกปิดชื่อจริง      |
+| room_key          | tblDimRoom         | room_key          | hotel + `\|` + reserved_room_type |
+| country_key       | tblDimCountry      | country_key       | country code/`__MISSING__`        |
+| customer_type_key | tblDimCustomerType | customer_type_key | กลุ่มการจอง/`__MISSING__`         |
+| arrival_date      | tblDimDate         | date_key          | วันที่เข้าพักตามกำหนด             |
 
 Fact PK = booking_id จำนวนต้องเท่ากับจำนวนแถว ไม่มีรหัสผู้เข้าพักรายบุคคล แถวที่มีทุกค่าเหมือนกันยังเป็นคนละรายการได้ ไม่มีการลบ duplicate ทั้งแถว
 

@@ -5,15 +5,99 @@ import Icon from '../components/Icon';
 import SummaryCards from '../components/SummaryCards';
 import { date, ErrorState, Loading, number, SourceBadge, StatusBadge } from '../components/States';
 
-const emptyFilters: Filters = { q: '', source: 'all', hotel: '', status: '', room: '', from: '', to: '' };
+const PAGE_SIZE = 10;
+const emptyFilters: Filters = {
+  q: '',
+  source: 'all',
+  hotel: '',
+  status: '',
+  room: '',
+  from: '',
+  to: '',
+};
 function Detail({ id, close }: { id: string; close: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [booking, setBooking] = useState<Booking>();
   const [error, setError] = useState('');
-  useEffect(() => { dialog.current?.showModal(); let active = true; api.booking(id).then(data => { if (active) setBooking(data.booking); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [id]);
-  return <dialog ref={dialog} className="detail-dialog" onCancel={close} onClick={event => { if (event.target === event.currentTarget) close(); }} aria-labelledby="detail-title"><div className="dialog-top"><div><span className="eyebrow">BOOKING DETAILS</span><h2 id="detail-title">รายละเอียดรายการจอง</h2><code>{id}</code></div><button className="icon-button" onClick={close} aria-label="ปิดรายละเอียด"><Icon name="close"/></button></div>{error ? <ErrorState message={error}/> : !booking ? <Loading/> : <><div className="detail-badges"><StatusBadge status={booking.reservation_status}/><SourceBadge source={booking.data_source}/></div><dl className="detail-grid">{Object.entries(booking).map(([key, value]) => <div key={key}><dt>{key}</dt><dd>{value === null || value === '' || value === undefined ? <span className="muted">ไม่มีข้อมูล</span> : String(value)}</dd></div>)}</dl><p className="fine-print">booking_id เป็นรหัสรายการที่ระบบสร้าง ไม่ใช่รหัสลูกค้า และไม่ใช้ระบุตัวผู้เข้าพักรายบุคคล</p></>}</dialog>;
+  useEffect(() => {
+    dialog.current?.showModal();
+    let active = true;
+    api
+      .booking(id)
+      .then((data) => {
+        if (active) setBooking(data.booking);
+      })
+      .catch((e) => {
+        if (active) setError(e.message);
+      });
+    return () => {
+      active = false;
+    };
+  }, [id]);
+  return (
+    <dialog
+      ref={dialog}
+      className="detail-dialog"
+      onCancel={close}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) close();
+      }}
+      aria-labelledby="detail-title"
+    >
+      <div className="dialog-top">
+        <div>
+          <span className="eyebrow">BOOKING DETAILS</span>
+          <h2 id="detail-title">รายละเอียดรายการจอง</h2>
+          <code>{id}</code>
+        </div>
+        <button className="icon-button" onClick={close} aria-label="ปิดรายละเอียด">
+          <Icon name="close" />
+        </button>
+      </div>
+      {error ? (
+        <ErrorState message={error} />
+      ) : !booking ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="detail-badges">
+            <StatusBadge status={booking.reservation_status} />
+            <SourceBadge source={booking.data_source} />
+          </div>
+          <dl className="detail-grid">
+            {Object.entries(booking).map(([key, value]) => (
+              <div key={key}>
+                <dt>{key}</dt>
+                <dd>
+                  {value === null || value === '' || value === undefined ? (
+                    <span className="muted">ไม่มีข้อมูล</span>
+                  ) : (
+                    String(value)
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="fine-print">
+            booking_id เป็นรหัสรายการที่ระบบสร้าง ไม่ใช่รหัสลูกค้า
+            และไม่ใช้ระบุตัวผู้เข้าพักรายบุคคล
+          </p>
+        </>
+      )}
+    </dialog>
+  );
 }
-export default function BookingsPage({ options, optionsError, retryOptions, revision }: { options?: Options; optionsError: string; retryOptions: () => void; revision: number }) {
+export default function BookingsPage({
+  options,
+  optionsError,
+  retryOptions,
+  revision,
+}: {
+  options?: Options;
+  optionsError: string;
+  retryOptions: () => void;
+  revision: number;
+}) {
   const [draft, setDraft] = useState<Filters>(emptyFilters);
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [page, setPage] = useState(1);
@@ -23,22 +107,320 @@ export default function BookingsPage({ options, optionsError, retryOptions, revi
   const [retry, setRetry] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const [detailId, setDetailId] = useState('');
-  useEffect(() => { const controller = new AbortController(); setLoading(true); setError(''); api.bookings({ ...filters, page, pageSize: 20 }, controller.signal).then(setData).catch(e => { if (e.name !== 'AbortError') setError(e.message); }).finally(() => { if (!controller.signal.aborted) setLoading(false); }); return () => controller.abort(); }, [filters, page, retry, revision]);
-  function update(key: keyof Filters, value: string) { setDraft(current => ({ ...current, [key]: value, ...(key === 'hotel' ? { room: '' } : {}) })); }
-  const rooms = draft.hotel ? options?.roomsByHotel[draft.hotel] ?? [] : [...new Set(Object.values(options?.roomsByHotel ?? {}).flat())].sort();
-  const totalPages = Math.max(1, Math.ceil((data?.total ?? 0) / 20));
-  const activeFilterCount = Object.entries(filters).filter(([key, value]) => value && !(key === 'source' && value === 'all')).length;
-  return <>
-    <div className="page-heading"><div><div className="eyebrow">BOOKING EXPLORER</div><h1>รายการจอง</h1><p>สำรวจข้อมูลการจอง แยกแหล่งที่มา และตรวจสอบรายละเอียดในที่เดียว</p></div><a className="button primary" href="#/new"><Icon name="plus" size={18}/>เพิ่มรายการจอง</a></div>
-    <SummaryCards refreshKey={revision}/>
-    <section className="panel booking-panel" aria-labelledby="booking-table-title"><div className="panel-heading"><div><h2 id="booking-table-title">ข้อมูลการจอง <span className="count-chip">{data ? number(data.total) : '…'} รายการ</span></h2><p>ข้อมูลตั้งต้นและรายการสาธิตจากเว็บไซต์</p></div><button className="button subtle small" onClick={() => setRetry(value => value + 1)} disabled={loading}><Icon name="refresh" size={16}/>อ่านข้อมูลใหม่</button></div>
-      <form className="filters" onSubmit={event => { event.preventDefault(); setPage(1); setFilters({ ...draft }); }}>
-        <div className="filter-main"><label className="search-field"><Icon name="search" size={18}/><input aria-label="ค้นหารายการจอง" placeholder="ค้นหารหัสจอง โรงแรม หรือประเทศ…" value={draft.q} onChange={event => update('q', event.target.value)}/></label><select aria-label="แหล่งข้อมูล" value={draft.source} onChange={event => update('source', event.target.value)}><option value="all">ทุกแหล่งข้อมูล</option><option value="original">Dataset ต้นฉบับ</option><option value="web">จากเว็บไซต์</option></select><button type="button" className={`button outline ${expanded ? 'selected' : ''}`} onClick={() => setExpanded(value => !value)} aria-expanded={expanded}><Icon name="filter" size={18}/>ตัวกรอง{activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}</button><button type="submit" className="button primary">ค้นหา</button></div>
-        {expanded && <div className="filter-expanded"><label>ประเภทโรงแรม<select value={draft.hotel} onChange={event => update('hotel', event.target.value)}><option value="">ทุกโรงแรม</option>{options?.hotels.map(value => <option key={value}>{value}</option>)}</select></label><label>ผลลัพธ์การจอง<select value={draft.status} onChange={event => update('status', event.target.value)}><option value="">ทุกสถานะ</option>{options?.statuses.map(value => <option key={value}>{value}</option>)}</select></label><label>รหัสประเภทห้อง<select value={draft.room} onChange={event => update('room', event.target.value)}><option value="">ทุกประเภทห้อง</option>{rooms.map(value => <option key={value}>{value}</option>)}</select></label><label>วันเข้าพักตั้งแต่<input type="date" value={draft.from} max={draft.to || undefined} onChange={event => update('from', event.target.value)} onInput={event => update('from', event.currentTarget.value)}/></label><label>ถึงวันที่<input type="date" value={draft.to} min={draft.from || undefined} onChange={event => update('to', event.target.value)} onInput={event => update('to', event.currentTarget.value)}/></label><button type="button" className="text-button reset-filters" onClick={() => { setDraft(emptyFilters); setFilters(emptyFilters); setPage(1); }}>ล้างตัวกรอง</button></div>}
-      </form>
-      {optionsError && expanded && <div className="options-warning"><ErrorState message={optionsError} retry={retryOptions}/></div>}
-      {error ? <div className="panel-state"><ErrorState message={error} retry={() => setRetry(value => value + 1)}/></div> : loading ? <Loading text="กำลังอ่านรายการจาก Excel…"/> : !data?.items.length ? <div className="state"><span className="empty-icon"><Icon name="search" size={28}/></span><h3>ไม่พบรายการที่ตรงกับเงื่อนไข</h3><p>ลองเปลี่ยนคำค้นหาหรือล้างตัวกรองเพื่อดูข้อมูลอีกครั้ง</p><button className="button outline" onClick={() => { setDraft(emptyFilters); setFilters(emptyFilters); setPage(1); }}>แสดงข้อมูลทั้งหมด</button></div> : <><div className="table-scroll"><table><thead><tr><th>รหัสรายการ / แหล่งข้อมูล</th><th>ประเภทโรงแรม</th><th>วันเข้าพัก</th><th>ประเภทห้อง</th><th className="numeric">จำนวนคืน</th><th className="numeric">ADR</th><th>ผลลัพธ์การจอง</th><th><span className="sr-only">รายละเอียด</span></th></tr></thead><tbody>{data.items.map(booking => <tr key={String(booking.booking_id)}><td><button className="booking-id" onClick={() => setDetailId(String(booking.booking_id))}>{String(booking.booking_id)}</button><SourceBadge source={booking.data_source}/></td><td><span className="hotel-cell"><span className={`hotel-symbol ${booking.hotel === 'Resort Hotel' ? 'resort' : ''}`}><Icon name="hotel" size={16}/></span><span>{String(booking.hotel)}<small>{String(booking.country || 'ไม่ระบุประเทศ')}</small></span></span></td><td className="date-cell">{date(booking.arrival_date)}</td><td><span className="room-code">{String(booking.reserved_room_type ?? '—')}</span></td><td className="numeric">{number(Number(booking.stays_in_week_nights) + Number(booking.stays_in_weekend_nights))}</td><td className="numeric adr-cell">{number(booking.adr, 2)}</td><td><StatusBadge status={booking.reservation_status}/></td><td><button className="icon-button" aria-label={`ดูรายละเอียด ${booking.booking_id}`} onClick={() => setDetailId(String(booking.booking_id))}><Icon name="arrow" size={17}/></button></td></tr>)}</tbody></table></div><div className="pagination"><span>แสดง {number((page - 1) * 20 + 1)}–{number(Math.min(page * 20, data.total))} จาก {number(data.total)} รายการ</span><div><button className="button outline small" disabled={page === 1} onClick={() => setPage(value => value - 1)}>ก่อนหน้า</button><span className="page-number">{page} <span>/ {number(totalPages)}</span></span><button className="button outline small" disabled={page >= totalPages} onClick={() => setPage(value => value + 1)}>ถัดไป <Icon name="arrow" size={14}/></button></div></div></>}
-    </section><div className="context-note"><Icon name="info" size={17}/><p>Dataset เป็นข้อมูลประวัติศาสตร์ของโรงแรม 2 แห่ง ข้อมูลที่เพิ่มผ่านเว็บจะติดป้ายแหล่งที่มาแยกจากต้นฉบับเสมอ</p></div>
-    {detailId && <Detail id={detailId} close={() => setDetailId('')}/>}
-  </>;
+  useEffect(() => {
+    const controller = new AbortController();
+    setLoading(true);
+    setError('');
+    api
+      .bookings({ ...filters, page, pageSize: PAGE_SIZE }, controller.signal)
+      .then(setData)
+      .catch((e) => {
+        if (e.name !== 'AbortError') setError(e.message);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
+  }, [filters, page, retry, revision]);
+  function update(key: keyof Filters, value: string) {
+    setDraft((current) => ({
+      ...current,
+      [key]: value,
+      ...(key === 'hotel' ? { room: '' } : {}),
+    }));
+  }
+  const rooms = draft.hotel
+    ? (options?.roomsByHotel[draft.hotel] ?? [])
+    : [...new Set(Object.values(options?.roomsByHotel ?? {}).flat())].sort();
+  const totalPages = Math.max(1, Math.ceil((data?.total ?? 0) / PAGE_SIZE));
+  const activeFilterCount = Object.entries(filters).filter(
+    ([key, value]) => value && !(key === 'source' && value === 'all')
+  ).length;
+  return (
+    <>
+      <div className="page-heading">
+        <div>
+          <div className="eyebrow">BOOKING EXPLORER</div>
+          <h1>รายการจอง</h1>
+          <p>สำรวจข้อมูลการจอง แยกแหล่งที่มา และตรวจสอบรายละเอียดในที่เดียว</p>
+        </div>
+        <a className="button primary" href="#/new">
+          <Icon name="plus" size={18} />
+          เพิ่มรายการจอง
+        </a>
+      </div>
+      <SummaryCards refreshKey={revision} />
+      <section className="panel booking-panel" aria-labelledby="booking-table-title">
+        <div className="panel-heading">
+          <div className="panel-title">
+            <span className="panel-title-icon">
+              <Icon name="list" size={21} />
+            </span>
+            <div>
+              <h2 id="booking-table-title">
+                ข้อมูลการจอง{' '}
+                <span className="count-chip">{data ? number(data.total) : '…'} รายการ</span>
+              </h2>
+              <p>ข้อมูลตั้งต้นและรายการสาธิตจากเว็บไซต์</p>
+            </div>
+          </div>
+          <button
+            className="button subtle small"
+            onClick={() => setRetry((value) => value + 1)}
+            disabled={loading}
+          >
+            <Icon name="refresh" size={16} />
+            อ่านข้อมูลใหม่
+          </button>
+        </div>
+        <form
+          className="filters"
+          onSubmit={(event) => {
+            event.preventDefault();
+            setPage(1);
+            setFilters({ ...draft });
+          }}
+        >
+          <div className="filter-main">
+            <label className="search-field">
+              <Icon name="search" size={18} />
+              <input
+                aria-label="ค้นหารายการจอง"
+                placeholder="ค้นหารหัสจอง โรงแรม หรือประเทศ…"
+                value={draft.q}
+                onChange={(event) => update('q', event.target.value)}
+              />
+            </label>
+            <select
+              aria-label="แหล่งข้อมูล"
+              value={draft.source}
+              onChange={(event) => update('source', event.target.value)}
+            >
+              <option value="all">ทุกแหล่งข้อมูล</option>
+              <option value="original">Dataset ต้นฉบับ</option>
+              <option value="web">จากเว็บไซต์</option>
+            </select>
+            <button
+              type="button"
+              className={`button outline ${expanded ? 'selected' : ''}`}
+              onClick={() => setExpanded((value) => !value)}
+              aria-expanded={expanded}
+            >
+              <Icon name="filter" size={18} />
+              ตัวกรอง
+              {activeFilterCount > 0 && <span className="filter-count">{activeFilterCount}</span>}
+            </button>
+            <button type="submit" className="button primary">
+              ค้นหา
+            </button>
+          </div>
+          {expanded && (
+            <div className="filter-expanded">
+              <label>
+                ประเภทโรงแรม
+                <select
+                  value={draft.hotel}
+                  onChange={(event) => update('hotel', event.target.value)}
+                >
+                  <option value="">ทุกโรงแรม</option>
+                  {options?.hotels.map((value) => (
+                    <option key={value}>{value}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                ผลลัพธ์การจอง
+                <select
+                  value={draft.status}
+                  onChange={(event) => update('status', event.target.value)}
+                >
+                  <option value="">ทุกสถานะ</option>
+                  {options?.statuses.map((value) => (
+                    <option key={value}>{value}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                รหัสประเภทห้อง
+                <select value={draft.room} onChange={(event) => update('room', event.target.value)}>
+                  <option value="">ทุกประเภทห้อง</option>
+                  {rooms.map((value) => (
+                    <option key={value}>{value}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                วันเข้าพักตั้งแต่
+                <input
+                  type="date"
+                  value={draft.from}
+                  max={draft.to || undefined}
+                  onChange={(event) => update('from', event.target.value)}
+                  onInput={(event) => update('from', event.currentTarget.value)}
+                />
+              </label>
+              <label>
+                ถึงวันที่
+                <input
+                  type="date"
+                  value={draft.to}
+                  min={draft.from || undefined}
+                  onChange={(event) => update('to', event.target.value)}
+                  onInput={(event) => update('to', event.currentTarget.value)}
+                />
+              </label>
+              <button
+                type="button"
+                className="text-button reset-filters"
+                onClick={() => {
+                  setDraft(emptyFilters);
+                  setFilters(emptyFilters);
+                  setPage(1);
+                }}
+              >
+                ล้างตัวกรอง
+              </button>
+            </div>
+          )}
+        </form>
+        {optionsError && expanded && (
+          <div className="options-warning">
+            <ErrorState message={optionsError} retry={retryOptions} />
+          </div>
+        )}
+        {error ? (
+          <div className="panel-state">
+            <ErrorState message={error} retry={() => setRetry((value) => value + 1)} />
+          </div>
+        ) : loading ? (
+          <Loading text="กำลังอ่านรายการจาก Excel…" />
+        ) : !data?.items.length ? (
+          <div className="state">
+            <span className="empty-icon">
+              <Icon name="search" size={28} />
+            </span>
+            <h3>ไม่พบรายการที่ตรงกับเงื่อนไข</h3>
+            <p>ลองเปลี่ยนคำค้นหาหรือล้างตัวกรองเพื่อดูข้อมูลอีกครั้ง</p>
+            <button
+              className="button outline"
+              onClick={() => {
+                setDraft(emptyFilters);
+                setFilters(emptyFilters);
+                setPage(1);
+              }}
+            >
+              แสดงข้อมูลทั้งหมด
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>รหัสรายการ / แหล่งข้อมูล</th>
+                    <th>ประเภทโรงแรม</th>
+                    <th>วันเข้าพัก</th>
+                    <th>ประเภทห้อง</th>
+                    <th className="numeric">จำนวนคืน</th>
+                    <th className="numeric">ADR</th>
+                    <th>ผลลัพธ์การจอง</th>
+                    <th>
+                      <span className="sr-only">รายละเอียด</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.items.map((booking) => (
+                    <tr key={String(booking.booking_id)}>
+                      <td>
+                        <button
+                          className="booking-id"
+                          onClick={() => setDetailId(String(booking.booking_id))}
+                        >
+                          {String(booking.booking_id)}
+                        </button>
+                        <SourceBadge source={booking.data_source} />
+                      </td>
+                      <td>
+                        <span className="hotel-cell">
+                          <span
+                            className={`hotel-symbol ${booking.hotel === 'Resort Hotel' ? 'resort' : ''}`}
+                          >
+                            <Icon name="hotel" size={16} />
+                          </span>
+                          <span>
+                            {String(booking.hotel)}
+                            <small>{String(booking.country || 'ไม่ระบุประเทศ')}</small>
+                          </span>
+                        </span>
+                      </td>
+                      <td className="date-cell">{date(booking.arrival_date)}</td>
+                      <td>
+                        <span className="room-code">
+                          {String(booking.reserved_room_type ?? '—')}
+                        </span>
+                      </td>
+                      <td className="numeric">
+                        {number(
+                          Number(booking.stays_in_week_nights) +
+                            Number(booking.stays_in_weekend_nights)
+                        )}
+                      </td>
+                      <td className="numeric adr-cell">{number(booking.adr, 2)}</td>
+                      <td>
+                        <StatusBadge status={booking.reservation_status} />
+                      </td>
+                      <td>
+                        <button
+                          className="icon-button"
+                          aria-label={`ดูรายละเอียด ${booking.booking_id}`}
+                          onClick={() => setDetailId(String(booking.booking_id))}
+                        >
+                          <Icon name="arrow" size={17} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="pagination">
+              <span>
+                แสดง {number((page - 1) * PAGE_SIZE + 1)}–
+                {number(Math.min(page * PAGE_SIZE, data.total))} จาก {number(data.total)} รายการ
+              </span>
+              <div>
+                <button
+                  className="button outline small"
+                  disabled={page === 1}
+                  onClick={() => setPage((value) => value - 1)}
+                >
+                  ก่อนหน้า
+                </button>
+                <span className="page-number">
+                  {page} <span>/ {number(totalPages)}</span>
+                </span>
+                <button
+                  className="button outline small"
+                  disabled={page >= totalPages}
+                  onClick={() => setPage((value) => value + 1)}
+                >
+                  ถัดไป <Icon name="arrow" size={14} />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </section>
+      <div className="context-note">
+        <Icon name="info" size={17} />
+        <p>
+          Dataset เป็นข้อมูลประวัติศาสตร์ของโรงแรม 2 แห่ง
+          ข้อมูลที่เพิ่มผ่านเว็บจะติดป้ายแหล่งที่มาแยกจากต้นฉบับเสมอ
+        </p>
+      </div>
+      {detailId && <Detail id={detailId} close={() => setDetailId('')} />}
+    </>
+  );
 }

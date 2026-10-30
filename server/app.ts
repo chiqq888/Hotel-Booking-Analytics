@@ -10,18 +10,35 @@ export function createApp(service = new BookingService()) {
   app.disable('x-powered-by');
   app.use(express.json({ limit: '32kb' }));
   app.use('/api', bookingRoutes(service));
-  app.use('/api', (_req, res) => { res.status(404).json({ error: 'ไม่พบ API ที่ระบุ' }); });
+  app.use('/api', (_req, res) => {
+    res.status(404).json({ error: 'ไม่พบ API ที่ระบุ' });
+  });
   const clientDir = path.resolve('dist/client');
   if (fs.existsSync(clientDir)) {
     app.use(express.static(clientDir));
-    app.get('/{*path}', (_req, res) => { res.sendFile(path.join(clientDir, 'index.html')); });
+    app.get('/{*path}', (_req, res) => {
+      res.sendFile(path.join(clientDir, 'index.html'));
+    });
   }
   const errorHandler: ErrorRequestHandler = (error: unknown, _req, res, _next) => {
-    if (error instanceof AppError) { res.status(error.status).json({ error: error.message, ...(error.details ? { details: error.details } : {}) }); return; }
-    if (error instanceof SyntaxError && 'body' in error) { res.status(400).json({ error: 'รูปแบบ JSON ไม่ถูกต้อง' }); return; }
-    if ((error as { type?: string }).type === 'entity.too.large') { res.status(413).json({ error: 'ข้อมูลมีขนาดใหญ่เกินกำหนด' }); return; }
+    if (error instanceof AppError) {
+      res
+        .status(error.status)
+        .json({ error: error.message, ...(error.details ? { details: error.details } : {}) });
+      return;
+    }
+    if (error instanceof SyntaxError && 'body' in error) {
+      res.status(400).json({ error: 'รูปแบบ JSON ไม่ถูกต้อง' });
+      return;
+    }
+    if ((error as { type?: string }).type === 'entity.too.large') {
+      res.status(413).json({ error: 'ข้อมูลมีขนาดใหญ่เกินกำหนด' });
+      return;
+    }
     console.error('API failure:', error instanceof Error ? error.message : 'Unknown error');
-    res.status(500).json({ error: 'เกิดข้อผิดพลาดในการอ่านหรือบันทึกข้อมูล กรุณาตรวจสถานะไฟล์ Excel และลองใหม่' });
+    res.status(500).json({
+      error: 'เกิดข้อผิดพลาดในการอ่านหรือบันทึกข้อมูล กรุณาตรวจสถานะไฟล์ Excel และลองใหม่',
+    });
   };
   app.use(errorHandler);
   return app;

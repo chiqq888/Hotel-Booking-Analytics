@@ -99,20 +99,20 @@ npm.cmd start
 
 ## โครงสร้างสำคัญ
 
-| ตำแหน่ง | หน้าที่ |
-|---|---|
-| client/src/pages, components, services, types | เว็บ React ภาษาไทย 3 หน้า |
-| shared | TypeScript types และ validation ร่วมกัน |
-| server/routes → controllers → services → repositories | API และ Excel repository |
-| scripts/import-data.ts | นำเข้า CSV โดยโปรแกรม |
-| scripts/audit-dataset.py | ตรวจ Dataset อิสระและเขียน docs/dataset-audit.json |
-| dataset/hotel_bookings.csv | ต้นฉบับที่ไม่แก้ไข |
-| data/raw_data.xlsx | ข้อมูล original + web พร้อมรหัสรายการและแหล่งที่มา |
-| data/analysis.xlsx | Power Query/analytics สร้างด้วย Excel จริง |
-| excel/power-query | M queries สำหรับนำกลับไปสร้างซ้ำ |
-| tableau | นิยาม calculated fields, วิธีสร้าง Dashboard/Story |
-| docs/screenshots | ภาพหน้าจอจริงประกอบคู่มือ |
-| docs/ANALYSIS_FINDINGS.md | ผลจริงแยกโรงแรม/กลุ่มการจอง/ตลาด/ช่องทาง/lead time และการกระจาย ADR จาก original |
+| ตำแหน่ง                                               | หน้าที่                                                                          |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------- |
+| client/src/pages, components, services, types         | เว็บ React ภาษาไทย 3 หน้า                                                        |
+| shared                                                | TypeScript types และ validation ร่วมกัน                                          |
+| server/routes → controllers → services → repositories | API และ Excel repository                                                         |
+| scripts/import-data.ts                                | นำเข้า CSV โดยโปรแกรม                                                            |
+| scripts/audit-dataset.py                              | ตรวจ Dataset อิสระและเขียน docs/dataset-audit.json                               |
+| dataset/hotel_bookings.csv                            | ต้นฉบับที่ไม่แก้ไข                                                               |
+| data/raw_data.xlsx                                    | ข้อมูล original + web พร้อมรหัสรายการและแหล่งที่มา                               |
+| data/analysis.xlsx                                    | Power Query/analytics สร้างด้วย Excel จริง                                       |
+| excel/power-query                                     | M queries สำหรับนำกลับไปสร้างซ้ำ                                                 |
+| tableau                                               | นิยาม calculated fields, วิธีสร้าง Dashboard/Story                               |
+| docs/screenshots                                      | ภาพหน้าจอจริงประกอบคู่มือ                                                        |
+| docs/ANALYSIS_FINDINGS.md                             | ผลจริงแยกโรงแรม/กลุ่มการจอง/ตลาด/ช่องทาง/lead time และการกระจาย ADR จาก original |
 
 ## ความหมายและข้อจำกัด
 

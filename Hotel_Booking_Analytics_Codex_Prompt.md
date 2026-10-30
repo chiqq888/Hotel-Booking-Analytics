@@ -103,22 +103,22 @@ https://doi.org/10.1016/j.dib.2018.11.126
 
 สร้าง DATA_DICTIONARY.md โดยยึดนิยามจากแหล่งต้นทางและตรวจ schema ของ CSV จริง
 
-| ข้อมูล | คอลัมน์หลักหรือวิธีสร้าง |
-|---|---|
-| ประเภทโรงแรม | hotel |
-| รหัสประเภทห้องที่จอง | reserved_room_type |
-| กลุ่มการจอง | customer_type |
-| ประเทศผู้เข้าพัก | country |
-| ช่องทาง/ตลาด | distribution_channel, market_segment |
-| จำนวนคืนวันธรรมดา | stays_in_week_nights |
-| จำนวนคืนวันหยุด | stays_in_weekend_nights |
-| จำนวนคืนรวม | ผลบวกของจำนวนคืนสองคอลัมน์ข้างต้น |
-| จำนวนผู้เข้าพัก | adults, children, babies |
-| ราคาเฉลี่ยต่อวัน | adr |
-| ระยะเวลาจองล่วงหน้า | lead_time |
-| สถานะยกเลิก | is_canceled |
-| ผลลัพธ์การจอง | reservation_status |
-| วันเข้าพักตามกำหนด | สร้างจาก arrival_date_year/month/day_of_month |
+| ข้อมูล               | คอลัมน์หลักหรือวิธีสร้าง                      |
+| -------------------- | --------------------------------------------- |
+| ประเภทโรงแรม         | hotel                                         |
+| รหัสประเภทห้องที่จอง | reserved_room_type                            |
+| กลุ่มการจอง          | customer_type                                 |
+| ประเทศผู้เข้าพัก     | country                                       |
+| ช่องทาง/ตลาด         | distribution_channel, market_segment          |
+| จำนวนคืนวันธรรมดา    | stays_in_week_nights                          |
+| จำนวนคืนวันหยุด      | stays_in_weekend_nights                       |
+| จำนวนคืนรวม          | ผลบวกของจำนวนคืนสองคอลัมน์ข้างต้น             |
+| จำนวนผู้เข้าพัก      | adults, children, babies                      |
+| ราคาเฉลี่ยต่อวัน     | adr                                           |
+| ระยะเวลาจองล่วงหน้า  | lead_time                                     |
+| สถานะยกเลิก          | is_canceled                                   |
+| ผลลัพธ์การจอง        | reservation_status                            |
+| วันเข้าพักตามกำหนด   | สร้างจาก arrival_date_year/month/day_of_month |
 
 ข้อกำหนดการคลีน:
 
@@ -246,13 +246,13 @@ https://doi.org/10.1016/j.dib.2018.11.126
 
 API ขั้นต่ำ:
 
-| Method | Endpoint | หน้าที่ |
-|---|---|---|
-| GET | /api/health | ตรวจว่า Backend ทำงาน |
-| GET | /api/bookings | รายการพร้อม pagination/filter |
-| GET | /api/bookings/:id | รายละเอียดรายการ |
-| POST | /api/bookings | ตรวจและบันทึกรายการใหม่ลง Excel |
-| GET | /api/options | ตัวเลือกหมวดหมู่ที่ใช้ในฟอร์ม |
+| Method | Endpoint          | หน้าที่                         |
+| ------ | ----------------- | ------------------------------- |
+| GET    | /api/health       | ตรวจว่า Backend ทำงาน           |
+| GET    | /api/bookings     | รายการพร้อม pagination/filter   |
+| GET    | /api/bookings/:id | รายละเอียดรายการ                |
+| POST   | /api/bookings     | ตรวจและบันทึกรายการใหม่ลง Excel |
+| GET    | /api/options      | ตัวเลือกหมวดหมู่ที่ใช้ในฟอร์ม   |
 
 ส่ง validation error ที่อ่านรู้เรื่องและไม่เปิดเผยพาธไฟล์ภายในเครื่องผ่าน error response ใช้ Vite proxy หรือ same-origin ตามรูปแบบรันที่เลือก
 
@@ -359,4 +359,3 @@ Dashboard ต้องมี:
 - ExcelJS: https://github.com/exceljs/exceljs
 
 ตรวจเอกสารปัจจุบันของเครื่องมือก่อนใช้ API และอ้างอิงเฉพาะสิ่งที่ได้ใช้จริงในโปรเจกต์
-

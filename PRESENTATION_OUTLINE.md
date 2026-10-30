@@ -1,16 +1,16 @@
 # โครงพรีเซนต์ 15 นาที
 
-| เวลา | เนื้อหา | สิ่งที่แสดง |
-|---|---|---|
-| 0:00–1:00 | ปัญหาและขอบเขต | วิเคราะห์การจอง/ยกเลิก/เข้าพัก ไม่ใช่ระบบจองจริง |
-| 1:00–2:30 | Dataset และคำถามธุรกิจ | Kaggle+บทความ, 119390แถว, 2โรงแรม, ช่วง2015–2017; ไม่มี customer ID |
-| 2:30–4:00 | Pipeline | CSV→raw_data.xlsx←Web/API→Power Query→analysis.xlsx→Tableau Public→เว็บไซต์ |
-| 4:00–5:30 | คุณภาพและโมเดล | missing children4แถว, ADRติดลบ1, ADR0เก็บไว้; booking PK/room composite key; ห้ามลบ duplicates โดยเดา |
-| 5:30–7:00 | ผลจริง baseline | Completed75166, canceled44224รวมNo-Show1207, cancellation37.04%; ขอบเขตoriginal |
-| 7:00–9:00 | Advanced Analytics | Excel holdout3เดือนก่อนอนาคต MAE/MAPEจากverificationจริง และ GoalSeekราคา×คืน; อธิบายเดือนขอบ/ไม่ใช่กำไร |
-| 9:00–11:00 | Tableau Story4หน้า | overview, trend/forecast, cancellation, price distribution/limitations; ใช้ Workbook จริงเมื่อสร้างและตรวจแล้ว |
-| 11:00–14:00 | Demo flow | เพิ่มรายการเว็บ→กรองweb→reload→refresh Excel→Refresh Extract/Publish→reload Dashboardฉบับที่เผยแพร่แล้ว |
-| 14:00–15:00 | ข้อจำกัดและคำถาม | ข้อมูลเก่า, correlationไม่พิสูจน์เหตุ, linear baselineไม่อธิบายseasonality, ไม่มีความจุ/ต้นทุน, Tableau Publicต้องPublishเอง |
+| เวลา        | เนื้อหา                | สิ่งที่แสดง                                                                                                                  |
+| ----------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| 0:00–1:00   | ปัญหาและขอบเขต         | วิเคราะห์การจอง/ยกเลิก/เข้าพัก ไม่ใช่ระบบจองจริง                                                                             |
+| 1:00–2:30   | Dataset และคำถามธุรกิจ | Kaggle+บทความ, 119390แถว, 2โรงแรม, ช่วง2015–2017; ไม่มี customer ID                                                          |
+| 2:30–4:00   | Pipeline               | CSV→raw_data.xlsx←Web/API→Power Query→analysis.xlsx→Tableau Public→เว็บไซต์                                                  |
+| 4:00–5:30   | คุณภาพและโมเดล         | missing children4แถว, ADRติดลบ1, ADR0เก็บไว้; booking PK/room composite key; ห้ามลบ duplicates โดยเดา                        |
+| 5:30–7:00   | ผลจริง baseline        | Completed75166, canceled44224รวมNo-Show1207, cancellation37.04%; ขอบเขตoriginal                                              |
+| 7:00–9:00   | Advanced Analytics     | Excel holdout3เดือนก่อนอนาคต MAE/MAPEจากverificationจริง และ GoalSeekราคา×คืน; อธิบายเดือนขอบ/ไม่ใช่กำไร                     |
+| 9:00–11:00  | Tableau Story4หน้า     | overview, trend/forecast, cancellation, price distribution/limitations; ใช้ Workbook จริงเมื่อสร้างและตรวจแล้ว               |
+| 11:00–14:00 | Demo flow              | เพิ่มรายการเว็บ→กรองweb→reload→refresh Excel→Refresh Extract/Publish→reload Dashboardฉบับที่เผยแพร่แล้ว                      |
+| 14:00–15:00 | ข้อจำกัดและคำถาม       | ข้อมูลเก่า, correlationไม่พิสูจน์เหตุ, linear baselineไม่อธิบายseasonality, ไม่มีความจุ/ต้นทุน, Tableau Publicต้องPublishเอง |
 
 ## ลำดับ Demo
 

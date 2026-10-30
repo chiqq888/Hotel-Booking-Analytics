@@ -8,62 +8,62 @@ Hotel Booking Demand จาก [Kaggle](https://www.kaggle.com/datasets/jessemos
 
 ## คอลัมน์ต้นฉบับครบ 32 ช่อง
 
-| คอลัมน์ | ชนิดเชิงวิเคราะห์ | ความหมาย |
-|---|---|---|
-| hotel | text | City Hotel หรือ Resort Hotel |
-| is_canceled | integer 0/1 | ตัวระบุการยกเลิกตามต้นฉบับ |
-| lead_time | integer days | วันระหว่างการบันทึกจองใน PMS กับวันเข้าพักตามกำหนด |
-| arrival_date_year | integer | ปีเข้าพักตามกำหนด |
-| arrival_date_month | text | เดือนภาษาอังกฤษ |
-| arrival_date_week_number | integer | เลขสัปดาห์ของปีตามต้นฉบับ |
-| arrival_date_day_of_month | integer | วันที่ของเดือน |
-| stays_in_weekend_nights | integer nights | จำนวนคืนวันหยุดตามนิยามต้นฉบับ |
-| stays_in_week_nights | integer nights | จำนวนคืนวันธรรมดา |
-| adults | integer persons | จำนวนผู้ใหญ่ |
-| children | nullable integer persons | จำนวนเด็ก; NA/ว่างเก็บ null ไม่แทนด้วยศูนย์ |
-| babies | integer persons | จำนวนทารก |
-| meal | text code | รหัสอาหาร เช่น BB/HB/FB/SC/Undefined ไม่สร้างข้อมูลแทนเมื่อไม่ทราบ |
-| country | nullable text code | รหัสประเทศตามต้นฉบับ ไม่ใช่ตัวระบุบุคคล |
-| market_segment | text | กลุ่มตลาด เช่น Direct/Online TA |
-| distribution_channel | text | ช่องทางจัดจำหน่าย |
-| is_repeated_guest | integer 0/1 | flag ผู้เข้าพักซ้ำจากระบบต้นทาง ใช้สรุปกลุ่มได้แต่ติดตามรายคนไม่ได้ |
-| previous_cancellations | integer | จำนวนรายการก่อนหน้าที่ยกเลิกตามต้นทาง |
-| previous_bookings_not_canceled | integer | จำนวนรายการก่อนหน้าที่ไม่ยกเลิกตามต้นทาง |
-| reserved_room_type | text code | รหัสประเภทห้องที่จอง ไม่มีชื่อจริง |
-| assigned_room_type | text code | รหัสประเภทห้องที่จัดให้ |
-| booking_changes | integer | จำนวนครั้งที่เปลี่ยนข้อมูลจอง |
-| deposit_type | text | ประเภทมัดจำตามข้อมูล เช่น No Deposit/Non Refund/Refundable |
-| agent | nullable code | รหัสตัวแทนในต้นทาง เก็บต้นฉบับใน raw เป็นข้อความเพื่อรักษารหัส |
-| company | nullable code | รหัสบริษัทในต้นทาง ไม่มีชื่อบุคคล |
-| days_in_waiting_list | integer days | จำนวนวันใน waiting list |
-| customer_type | text | Contract/Group/Transient/Transient-Party เป็นประเภทการจอง |
-| adr | number | Average Daily Rate ตามต้นฉบับ ไม่สมมติสกุลเงินเพิ่มในหน้าเว็บ |
-| required_car_parking_spaces | integer | จำนวนพื้นที่จอดรถที่ต้องการ |
-| total_of_special_requests | integer | จำนวนคำร้องขอพิเศษ |
-| reservation_status | text | Check-Out, Canceled, No-Show |
-| reservation_status_date | date text yyyy-MM-dd | วันที่สถานะถูกตั้งตามข้อมูลต้นทาง ไม่ใช่ arrival date |
+| คอลัมน์                        | ชนิดเชิงวิเคราะห์        | ความหมาย                                                            |
+| ------------------------------ | ------------------------ | ------------------------------------------------------------------- |
+| hotel                          | text                     | City Hotel หรือ Resort Hotel                                        |
+| is_canceled                    | integer 0/1              | ตัวระบุการยกเลิกตามต้นฉบับ                                          |
+| lead_time                      | integer days             | วันระหว่างการบันทึกจองใน PMS กับวันเข้าพักตามกำหนด                  |
+| arrival_date_year              | integer                  | ปีเข้าพักตามกำหนด                                                   |
+| arrival_date_month             | text                     | เดือนภาษาอังกฤษ                                                     |
+| arrival_date_week_number       | integer                  | เลขสัปดาห์ของปีตามต้นฉบับ                                           |
+| arrival_date_day_of_month      | integer                  | วันที่ของเดือน                                                      |
+| stays_in_weekend_nights        | integer nights           | จำนวนคืนวันหยุดตามนิยามต้นฉบับ                                      |
+| stays_in_week_nights           | integer nights           | จำนวนคืนวันธรรมดา                                                   |
+| adults                         | integer persons          | จำนวนผู้ใหญ่                                                        |
+| children                       | nullable integer persons | จำนวนเด็ก; NA/ว่างเก็บ null ไม่แทนด้วยศูนย์                         |
+| babies                         | integer persons          | จำนวนทารก                                                           |
+| meal                           | text code                | รหัสอาหาร เช่น BB/HB/FB/SC/Undefined ไม่สร้างข้อมูลแทนเมื่อไม่ทราบ  |
+| country                        | nullable text code       | รหัสประเทศตามต้นฉบับ ไม่ใช่ตัวระบุบุคคล                             |
+| market_segment                 | text                     | กลุ่มตลาด เช่น Direct/Online TA                                     |
+| distribution_channel           | text                     | ช่องทางจัดจำหน่าย                                                   |
+| is_repeated_guest              | integer 0/1              | flag ผู้เข้าพักซ้ำจากระบบต้นทาง ใช้สรุปกลุ่มได้แต่ติดตามรายคนไม่ได้ |
+| previous_cancellations         | integer                  | จำนวนรายการก่อนหน้าที่ยกเลิกตามต้นทาง                               |
+| previous_bookings_not_canceled | integer                  | จำนวนรายการก่อนหน้าที่ไม่ยกเลิกตามต้นทาง                            |
+| reserved_room_type             | text code                | รหัสประเภทห้องที่จอง ไม่มีชื่อจริง                                  |
+| assigned_room_type             | text code                | รหัสประเภทห้องที่จัดให้                                             |
+| booking_changes                | integer                  | จำนวนครั้งที่เปลี่ยนข้อมูลจอง                                       |
+| deposit_type                   | text                     | ประเภทมัดจำตามข้อมูล เช่น No Deposit/Non Refund/Refundable          |
+| agent                          | nullable code            | รหัสตัวแทนในต้นทาง เก็บต้นฉบับใน raw เป็นข้อความเพื่อรักษารหัส      |
+| company                        | nullable code            | รหัสบริษัทในต้นทาง ไม่มีชื่อบุคคล                                   |
+| days_in_waiting_list           | integer days             | จำนวนวันใน waiting list                                             |
+| customer_type                  | text                     | Contract/Group/Transient/Transient-Party เป็นประเภทการจอง           |
+| adr                            | number                   | Average Daily Rate ตามต้นฉบับ ไม่สมมติสกุลเงินเพิ่มในหน้าเว็บ       |
+| required_car_parking_spaces    | integer                  | จำนวนพื้นที่จอดรถที่ต้องการ                                         |
+| total_of_special_requests      | integer                  | จำนวนคำร้องขอพิเศษ                                                  |
+| reservation_status             | text                     | Check-Out, Canceled, No-Show                                        |
+| reservation_status_date        | date text yyyy-MM-dd     | วันที่สถานะถูกตั้งตามข้อมูลต้นทาง ไม่ใช่ arrival date               |
 
 ## คอลัมน์ทางเทคนิคและอนุมาน
 
-| คอลัมน์ | นิยาม |
-|---|---|
-| booking_id | Primary Key ของรายการ original=`HBD-0000001` ตามลำดับแถว, web=`WEB-UUID` ไม่ใช่ Customer ID |
-| data_source | original หรือ web |
-| created_at | UTC ISO timestamp เฉพาะรายการ web; original เป็น null เพราะไม่ทราบเวลาสร้าง |
-| arrival_date | วันที่ประกอบจาก year/month/day ตรวจวันจริงก่อนใช้งาน |
-| month_start | วันแรกของเดือน arrival_date |
-| inferred_booking_date | arrival_date − lead_time เป็นค่าอนุมาน ไม่ใช่วันที่จองจริงที่ตรวจสอบจากต้นฉบับ |
-| total_nights | weekday + weekend หากทั้งสองค่าคำนวณได้และไม่ติดลบ |
-| hotel_key | hotel; ใช้ค่าแทน missing ที่ระบุใน M |
-| room_key | hotel + `|` + reserved_room_type เพื่อไม่ปะปนรหัสต่างโรงแรม |
-| country_key/customer_type_key | รหัสหมวดหมู่ หรือสมาชิก unknown ที่อธิบายชัดเจน |
-| children_missing | true เมื่อ children missing; ไม่ impute ศูนย์ |
-| missing_fields/required_missing_fields | รายชื่อช่องที่ขาด แยก required ต่อ metric |
-| analysis_missing_fields | ช่องเชิงวิเคราะห์ที่ขาด ใช้คัดรายการเข้า DataQuality; ไม่ทำให้ optional/technical null ที่คาดไว้กลายเป็นปัญหาทุกแถว |
-| invalid_fields | รายชื่อค่าผิดชนิด/โดเมน/วันที่/สถานะขัดกัน |
-| outlier_flags | ADR สูงกว่า threshold ใน Config เป็นสัญญาณตรวจสอบ ไม่ลบทิ้ง |
-| adr_valid/nights_valid | flag ว่าค่านำไปคำนวณ metric ได้หรือไม่ |
-| estimated_lodging_revenue | ADR × total_nights เฉพาะ Check-Out และสองค่าถูกต้อง |
+| คอลัมน์                                | นิยาม                                                                                                               |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| booking_id                             | Primary Key ของรายการ original=`HBD-0000001` ตามลำดับแถว, web=`WEB-UUID` ไม่ใช่ Customer ID                         |
+| data_source                            | original หรือ web                                                                                                   |
+| created_at                             | UTC ISO timestamp เฉพาะรายการ web; original เป็น null เพราะไม่ทราบเวลาสร้าง                                         |
+| arrival_date                           | วันที่ประกอบจาก year/month/day ตรวจวันจริงก่อนใช้งาน                                                                |
+| month_start                            | วันแรกของเดือน arrival_date                                                                                         |
+| inferred_booking_date                  | arrival_date − lead_time เป็นค่าอนุมาน ไม่ใช่วันที่จองจริงที่ตรวจสอบจากต้นฉบับ                                      |
+| total_nights                           | weekday + weekend หากทั้งสองค่าคำนวณได้และไม่ติดลบ                                                                  |
+| hotel_key                              | hotel; ใช้ค่าแทน missing ที่ระบุใน M                                                                                |
+| room_key                               | hotel + `                                                                                                           | ` + reserved_room_type เพื่อไม่ปะปนรหัสต่างโรงแรม |
+| country_key/customer_type_key          | รหัสหมวดหมู่ หรือสมาชิก unknown ที่อธิบายชัดเจน                                                                     |
+| children_missing                       | true เมื่อ children missing; ไม่ impute ศูนย์                                                                       |
+| missing_fields/required_missing_fields | รายชื่อช่องที่ขาด แยก required ต่อ metric                                                                           |
+| analysis_missing_fields                | ช่องเชิงวิเคราะห์ที่ขาด ใช้คัดรายการเข้า DataQuality; ไม่ทำให้ optional/technical null ที่คาดไว้กลายเป็นปัญหาทุกแถว |
+| invalid_fields                         | รายชื่อค่าผิดชนิด/โดเมน/วันที่/สถานะขัดกัน                                                                          |
+| outlier_flags                          | ADR สูงกว่า threshold ใน Config เป็นสัญญาณตรวจสอบ ไม่ลบทิ้ง                                                         |
+| adr_valid/nights_valid                 | flag ว่าค่านำไปคำนวณ metric ได้หรือไม่                                                                              |
+| estimated_lodging_revenue              | ADR × total_nights เฉพาะ Check-Out และสองค่าถูกต้อง                                                                 |
 
 FactBookings grain=หนึ่งแถวต่อ booking_id; dimensions มีหนึ่งแถวต่อ key. Join แบบ many-to-one จาก Fact → DimHotel(hotel_key), DimRoom(room_key), DimCountry(country_key), DimCustomerType(customer_type_key), DimDate(arrival_date/date_key ตาม query) ตรวจซ้ำและ orphan ใน ModelChecks ห้าม join ตาราง Forecast กลับเป็นแถว booking เพราะทำให้จำนวนจองพอง
 
@@ -75,14 +75,14 @@ FactSnapshot เป็น query ที่อ่านตาราง tblFactBook
 
 ค่าเริ่มต้นผลรายงานคือ `data_source=original` ต้องใช้ scope/filter เดียวกันเมื่อตรวจเทียบ
 
-| Metric | สูตรและขอบเขต |
-|---|---|
-| Total Bookings | COUNT(booking_id) ทั้งหมดใน scope |
-| Cancellation Rate | SUM(is_canceled=1)/COUNT(booking_id); ใช้ denominator ทุก booking ใน scope |
-| Completed Stays | COUNT ของ reservation_status=Check-Out |
-| Total Nights | SUM(total_nights) ที่ถูกต้องของกลุ่มที่ระบุ; API summary รวมทุกสถานะ ไม่ใช่คืนเข้าพักสำเร็จเท่านั้น |
-| Average ADR | ค่าเฉลี่ยไม่ถ่วงน้ำหนักต่อ booking ของ ADR ที่เป็นตัวเลข ≥0 รวมศูนย์และ outlier ที่เป็นบวก; ตัดค่าติดลบ/แปลงไม่ได้เท่านั้น |
-| Estimated Lodging Revenue | SUM(ADR×nights) เฉพาะ Check-Out และ ADR/nights ใช้คำนวณได้ ไม่ใช่รายได้ที่ตรวจสอบบัญชีแล้ว |
+| Metric                    | สูตรและขอบเขต                                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Total Bookings            | COUNT(booking_id) ทั้งหมดใน scope                                                                                          |
+| Cancellation Rate         | SUM(is_canceled=1)/COUNT(booking_id); ใช้ denominator ทุก booking ใน scope                                                 |
+| Completed Stays           | COUNT ของ reservation_status=Check-Out                                                                                     |
+| Total Nights              | SUM(total_nights) ที่ถูกต้องของกลุ่มที่ระบุ; API summary รวมทุกสถานะ ไม่ใช่คืนเข้าพักสำเร็จเท่านั้น                        |
+| Average ADR               | ค่าเฉลี่ยไม่ถ่วงน้ำหนักต่อ booking ของ ADR ที่เป็นตัวเลข ≥0 รวมศูนย์และ outlier ที่เป็นบวก; ตัดค่าติดลบ/แปลงไม่ได้เท่านั้น |
+| Estimated Lodging Revenue | SUM(ADR×nights) เฉพาะ Check-Out และ ADR/nights ใช้คำนวณได้ ไม่ใช่รายได้ที่ตรวจสอบบัญชีแล้ว                                 |
 
 No-Show ต้นฉบับตรวจพบ 1,207 แถว ทุกแถวมี is_canceled=1 จึงรวมใน Cancellation Rate ทั้ง Excel/API/Tableau ส่วน Completed Stays นับเฉพาะ Check-Out โดยไม่ขึ้นกับจำนวนคืนเป็นศูนย์
 

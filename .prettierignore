@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.tmp/
+.git/
+.codex/
+dataset/
+data/
+excel/*.xlsx
+tableau/import/*.csv
+package-lock.json
